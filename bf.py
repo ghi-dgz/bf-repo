@@ -1,6 +1,5 @@
 import sys
-def bf(code):
-    input_tape = ""
+def bf(code, input_tape, input_auto_zero):
     input_read_pos = 0
     num_zeros = 1 
     tape = [0] * num_zeros
@@ -32,8 +31,9 @@ def bf(code):
         elif char == '.':
             print(chr(tape[tickerpos]), end='')
         elif char == ',':
-            if len(input_tape) <= input_read_pos:
+            if len(input_tape) <= input_read_pos and not input_auto_zero:
                 input_tape += input("\ninput: ")
+
             if len(input_tape) > input_read_pos:
                 tape[tickerpos] = ord(input_tape[input_read_pos]) % 256
                 input_read_pos += 1
@@ -67,7 +67,10 @@ def bf(code):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
+        input_tape = sys.argv[2] if (len(sys.argv) > 2 and sys.argv[2][0:2] != "--") else ""
+        input_auto_zero = False if input_tape == "" else True
+
         with open(sys.argv[1], 'r') as file:
-            bf(file.read())
+            bf(file.read(), input_tape=input_tape, input_auto_zero=input_auto_zero)
     else:
-        print("Usage: python bf_intp.py [file]")
+        print("Usage: python bf_intp.py [file] [args]")

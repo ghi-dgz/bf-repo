@@ -14,3 +14,15 @@ yeah
 |]|end loop|if tape[pointer] != 0: # go backwards to opening [ in code reading|
 |,|take input|
 |.|write to output current cell|
+
+# interpreter
+
+I wrote a python interpreter, but there are some personalisations/modifications/alterations.  
+- Added ? function which prints the current tape
+- Added ! function which prints information on code passed in(number of steps in total, infinite loop, time taken, number of bit operations)
+- There is an input tape, which can be passed into the interpreter, and if it runs out the interpreter can ask for input if that is turned on. If no input tape is passed, it will ask for input when input is needed, if more than enough is passed it is stored
+- Tape specification -> infinite tape, looped tape, and tape with walls on either end (moving left when at the start does nothing)
+  
+You can use the interpreter as well as set these by reading the source code.  
+nah im joking you use python bf.py [filepath] [input] [args]
+e.g. `python bf.py done/multi_input_cat.bf "Hello, world"` (quotes are required if you want to put spaces in the input)
