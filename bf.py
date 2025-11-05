@@ -1,5 +1,7 @@
 import sys
 def bf(code):
+    input_tape = ""
+    input_read_pos = 0
     num_zeros = 1 
     tape = [0] * num_zeros
     tickerpos = 0
@@ -30,11 +32,14 @@ def bf(code):
         elif char == '.':
             print(chr(tape[tickerpos]), end='')
         elif char == ',':
-            inp = input()
-            if inp:
-                tape[tickerpos] = ord(inp[0]) % 256
+            if len(input_tape) <= input_read_pos:
+                input_tape += input("\ninput: ")
+            if len(input_tape) > input_read_pos:
+                tape[tickerpos] = ord(input_tape[input_read_pos]) % 256
+                input_read_pos += 1
             else:
                 tape[tickerpos] = 0
+            
         elif char == '[':
             if tape[tickerpos] == 0:
                     # find matching ]
