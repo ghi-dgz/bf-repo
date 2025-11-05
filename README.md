@@ -25,4 +25,4 @@ I wrote a python interpreter, but there are some personalisations/modifications/
   
 You can use the interpreter as well as set these by reading the source code.  
 nah im joking you use python bf.py [filepath] [input] [args]
-e.g. `python bf.py done/multi_input_cat.bf "Hello, world"` (quotes are required if you want to put spaces in the input)
+e.g. `python bf.py done/misc/multi_input_cat.bf "Hello, world"` (quotes are required if you want to put spaces in the input)
