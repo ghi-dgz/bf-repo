@@ -1,34 +1,44 @@
 import sys
-def bf(code, input_tape, input_auto_zero):
+def bf(code, input_tape, input_auto_zero, num_zeros=10):
     input_read_pos = 0
-    num_zeros = 1 
     tape = [0] * num_zeros
     tickerpos = 0
+    added_zeroes = 0
     last_print = "input"
+    def_steps = 0
+    debug_steps = 0
 
     def remove_non_commands(code):
-        commands = list("><+-.,[]?")
+        commands = list("><+-.,[]?!")
         return ''.join(c for c in code if c in commands)
     
+    code = remove_non_commands(code)
     i = 0
     while i < len(code):
         char = code[i]
         
         if char == '>':
+            def_steps += 1
             tickerpos += 1
-            if tickerpos >= num_zeros: # INFINITE TAPE (for my purposes)
+            if tickerpos >= num_zeros: # INFINITE TAPE 
                 num_zeros += 1
                 tape.append(0) 
+                added_zeroes += 1
         elif char == '<':
+            def_steps += 1
             tickerpos -= 1
             if tickerpos < 0:
                 tape.insert(0, 0) # INFINITE TAPEEEEEEEE
-                #tickerpos = num_zeros - 1
+                tickerpos += 1
+                added_zeroes += 1
         elif char == '+':
+            def_steps += 1
             tape[tickerpos] = (tape[tickerpos] + 1) % 256
         elif char == '-':
+            def_steps += 1
             tape[tickerpos] = (tape[tickerpos] - 1) % 256
         elif char == '?':
+            debug_steps += 1
             if last_print == "output": print("")
             print(tape)
             if 0 <= tickerpos <= len(tape)-1:
@@ -43,11 +53,12 @@ def bf(code, input_tape, input_auto_zero):
             else:
                 print(tickerpos)
             last_print = "debug"
-
         elif char == '.':
+            def_steps += 1
             print(chr(tape[tickerpos]), end='')
             last_print = "output"
         elif char == ',':
+            def_steps += 1
             if len(input_tape) <= input_read_pos and not input_auto_zero:
                 if last_print == "output": print("")
                 input_tape += input("input: ")
@@ -60,6 +71,7 @@ def bf(code, input_tape, input_auto_zero):
             last_print = "input"
             
         elif char == '[':
+            def_steps += 1
             if tape[tickerpos] == 0:
                     # find matching ]
                     count = 1
@@ -71,6 +83,7 @@ def bf(code, input_tape, input_auto_zero):
                         elif code[i] == "]":
                             count -= 1
         elif char == ']':
+            def_steps += 1
             if tape[tickerpos] != 0:
                     # find matching [
                     count = 1
@@ -80,6 +93,13 @@ def bf(code, input_tape, input_auto_zero):
                             count += 1
                         elif code[i] == "[":
                             count -= 1
+        elif char == "!":
+            debug_steps += 1
+            if last_print == "output": print("")
+            print(f"Commands: {len(code)}")
+            print(f"Added zeroes: {added_zeroes}")
+            print(f"Steps ran: {def_steps}")
+            print(f"Debug steps ran: {debug_steps}")
         else:
             pass
         i += 1
