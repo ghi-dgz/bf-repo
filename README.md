@@ -1,6 +1,6 @@
 # random bf snippets
 
-yeah
+im gonna add rickroll just you wait
 
 # bf summarised
 
@@ -12,8 +12,8 @@ yeah
 |<|moves pointer back one|pointer -= 1|
 |[|start loop|if tape[pointer] == 0: # skip to closing ] in code reading|
 |]|end loop|if tape[pointer] != 0: # go backwards to opening [ in code reading|
-|,|take input|
-|.|write to output current cell|
+|,|take input|tape[pointer] = ord(input(""))|
+|.|write to output current cell|print(chr(tape[pointer]))|
 
 # interpreter
 
