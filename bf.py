@@ -1,3 +1,4 @@
+import time
 import sys
 def bf(code, input_tape, input_auto_zero, num_zeros=10):
     input_read_pos = 0
@@ -9,7 +10,7 @@ def bf(code, input_tape, input_auto_zero, num_zeros=10):
     debug_steps = 0
 
     def remove_non_commands(code):
-        commands = list("><+-.,[]?!")
+        commands = list("><+-.,[]?!%")
         return ''.join(c for c in code if c in commands)
     
     code = remove_non_commands(code)
@@ -20,7 +21,7 @@ def bf(code, input_tape, input_auto_zero, num_zeros=10):
         if char == '>':
             def_steps += 1
             tickerpos += 1
-            if tickerpos >= num_zeros: # INFINITE TAPE 
+            if tickerpos >= num_zeros:
                 num_zeros += 1
                 tape.append(0) 
                 added_zeroes += 1
@@ -28,7 +29,7 @@ def bf(code, input_tape, input_auto_zero, num_zeros=10):
             def_steps += 1
             tickerpos -= 1
             if tickerpos < 0:
-                tape.insert(0, 0) # INFINITE TAPEEEEEEEE
+                tape.insert(0, 0)
                 tickerpos += 1
                 added_zeroes += 1
         elif char == '+':
@@ -100,6 +101,8 @@ def bf(code, input_tape, input_auto_zero, num_zeros=10):
             print(f"Added zeroes: {added_zeroes}")
             print(f"Steps ran: {def_steps}")
             print(f"Debug steps ran: {debug_steps}")
+        elif char == "%":
+            time.sleep(0.1)
         else:
             pass
         i += 1

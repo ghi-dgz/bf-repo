@@ -11,4 +11,4 @@ uwu = {
     't':116,
 }
 print(uwu)
-print(len(uwu.keys()))
+print((uwu.keys()))

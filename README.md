@@ -22,6 +22,7 @@ I wrote a python interpreter, but there are some personalisations/modifications/
 - Added ! function which prints information on code passed in(number of steps in total, infinite loop, time taken, number of bit operations)
 - There is an input tape, which can be passed into the interpreter, and if it runs out the interpreter can ask for input if that is turned on. If no input tape is passed, it will ask for input when input is needed, if more than enough is passed it is stored
 - Tape specification -> infinite tape, looped tape, and tape with walls on either end (moving left when at the start does nothing)
+- % for sleeping for 0.1 seconds (used in animations and games)
   
 You can use the interpreter as well as set these by reading the source code.  
 nah im joking you use python bf.py [filepath] [input] [args]
