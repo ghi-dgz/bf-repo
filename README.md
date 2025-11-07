@@ -1,7 +1,13 @@
 # random bf snippets
 
-im gonna add rickroll just you wait
-
+i added rickroll
+```
+git clone https://github.com/ghi-dgz/bf-repo.git
+cd bf-repo
+python bf.py rickroll/rick.bf
+```
+congrats you just got rickrolled
+ 
 # bf summarised
 
 |command|what does that do|interpreter implementation|
