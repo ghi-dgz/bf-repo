@@ -1,3 +1,4 @@
+from math import sqrt
 from math import factorial as fact
 
 class Term:
@@ -46,7 +47,7 @@ def get_term(n: int):
     return uwu
 
 terms = []
-for n in range(22):
+for n in range(20):
     term = get_term(n)
     print(term)
     terms.append(term)
@@ -72,3 +73,4 @@ for num in final:
     final_final += num
 
 print(final_final)
+print(24*final_final +  (3/4 * sqrt(3)))
