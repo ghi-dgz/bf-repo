@@ -41,7 +41,18 @@ def bf(code, input_tape, input_auto_zero, num_zeros=10):
         elif char == '?':
             debug_steps += 1
             if last_print == "output": print("")
-            print(tape)
+            yup = [chr(x) if chr(x) != '\x00' else ' ' for x in tape]
+            print(str(yup).replace("'", '').replace(",", ''))
+            if 0 <= tickerpos <= len(tape)-1:
+                posh = 1
+                ok = tickerpos
+                for char in range(ok):
+                    posh += 2
+                print(' ' * posh + '^')
+            else:
+                print(tickerpos)
+
+            print(str(tape).replace(",", ""))
             if 0 <= tickerpos <= len(tape)-1:
                 pos = 1  
                 for k, val in enumerate(tape):
@@ -49,7 +60,7 @@ def bf(code, input_tape, input_auto_zero, num_zeros=10):
                         break
                     pos += len(str(val))
                     if k < len(tape) - 1:
-                        pos += 2
+                        pos += 1
                 print(' ' * pos + '^')
             else:
                 print(tickerpos)
